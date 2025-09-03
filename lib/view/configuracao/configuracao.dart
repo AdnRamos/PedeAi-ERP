@@ -1,115 +1,111 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pedeai/theme/app_theme.dart';
 import 'package:pedeai/theme/theme_controller.dart';
 import 'package:pedeai/view/home/drawer.dart';
 import 'package:pedeai/app_nav_bar.dart';
 
 class ThemeSettingsPage extends StatelessWidget {
-  const ThemeSettingsPage({super.key, required this.controller});
-  final ThemeController controller;
+  const ThemeSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (_, __) {
-        final cs = Theme.of(context).colorScheme;
-        return Scaffold(
-          appBar: AppBar(
-            leading: Builder(
-              builder: (ctx) => IconButton(
-                icon: Icon(Icons.menu, color: cs.onSurface),
-                onPressed: () => Scaffold.of(ctx).openDrawer(),
-              ),
+    final controller = context.watch<ThemeController>();
+    final cs = Theme.of(context).colorScheme;
+    return Scaffold(
+      appBar: AppBar(
+        leading: Builder(
+          builder: (ctx) => IconButton(
+            icon: Icon(Icons.menu, color: cs.onSurface),
+            onPressed: () => Scaffold.of(ctx).openDrawer(),
+          ),
+        ),
+        title: const Text('Configurações'),
+      ),
+      drawer: DrawerPage(
+        currentRoute: ModalRoute.of(context)?.settings.name,
+      ),
+
+      // ⬇️ exatamente como você usa no Produto
+      bottomNavigationBar: AppNavBar(
+        currentRoute: ModalRoute.of(context)?.settings.name,
+      ),
+
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+        children: [
+          _SectionTitle('Aparência'),
+          _GroupCard(
+            child: Column(
+              children: [
+                _ThemeRadioTile(
+                  label: 'Seguir o sistema',
+                  value: ThemeMode.system,
+                  group: controller.mode,
+                  onChanged: (m) => controller.setMode(m),
+                ),
+                const Divider(height: 1),
+                _ThemeRadioTile(
+                  label: 'Claro',
+                  value: ThemeMode.light,
+                  group: controller.mode,
+                  onChanged: (m) => controller.setMode(m),
+                  trailing: const _ThemePreview(isDark: false),
+                ),
+                const Divider(height: 1),
+                _ThemeRadioTile(
+                  label: 'Escuro',
+                  value: ThemeMode.dark,
+                  group: controller.mode,
+                  onChanged: (m) => controller.setMode(m),
+                  trailing: const _ThemePreview(isDark: true),
+                ),
+              ],
             ),
-            title: const Text('Configurações'),
           ),
-          drawer: DrawerPage(
-            currentRoute: ModalRoute.of(context)?.settings.name,
-          ),
-
-          // ⬇️ exatamente como você usa no Produto
-          bottomNavigationBar: AppNavBar(
-            currentRoute: ModalRoute.of(context)?.settings.name,
-          ),
-
-          body: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-            children: [
-              _SectionTitle('Aparência'),
-              _GroupCard(
-                child: Column(
-                  children: [
-                    _ThemeRadioTile(
-                      label: 'Seguir o sistema',
-                      value: ThemeMode.system,
-                      group: controller.mode,
-                      onChanged: (m) => controller.setMode(m),
-                    ),
-                    const Divider(height: 1),
-                    _ThemeRadioTile(
-                      label: 'Claro',
-                      value: ThemeMode.light,
-                      group: controller.mode,
-                      onChanged: (m) => controller.setMode(m),
-                      trailing: const _ThemePreview(isDark: false),
-                    ),
-                    const Divider(height: 1),
-                    _ThemeRadioTile(
-                      label: 'Escuro',
-                      value: ThemeMode.dark,
-                      group: controller.mode,
-                      onChanged: (m) => controller.setMode(m),
-                      trailing: const _ThemePreview(isDark: true),
-                    ),
-                  ],
+          const SizedBox(height: 16),
+          _SectionTitle('Pré-visualização'),
+          const _PreviewCard(),
+          const SizedBox(height: 24),
+          _SectionTitle('Notificações (em breve)'),
+          _GroupCard(
+            child: Column(
+              children: const [
+                _DisabledTile(
+                  icon: Icons.notifications_active_outlined,
+                  title: 'Notificações push',
+                  subtitle: 'Receba alertas de vendas e estoque',
                 ),
-              ),
-              const SizedBox(height: 16),
-              _SectionTitle('Pré-visualização'),
-              const _PreviewCard(),
-              const SizedBox(height: 24),
-              _SectionTitle('Notificações (em breve)'),
-              _GroupCard(
-                child: Column(
-                  children: const [
-                    _DisabledTile(
-                      icon: Icons.notifications_active_outlined,
-                      title: 'Notificações push',
-                      subtitle: 'Receba alertas de vendas e estoque',
-                    ),
-                    Divider(height: 1),
-                    _DisabledTile(
-                      icon: Icons.vibration,
-                      title: 'Feedback tátil',
-                      subtitle: 'Vibração ao executar ações',
-                    ),
-                  ],
+                Divider(height: 1),
+                _DisabledTile(
+                  icon: Icons.vibration,
+                  title: 'Feedback tátil',
+                  subtitle: 'Vibração ao executar ações',
                 ),
-              ),
-              const SizedBox(height: 16),
-              _SectionTitle('PDV (em breve)'),
-              _GroupCard(
-                child: Column(
-                  children: const [
-                    _DisabledTile(
-                      icon: Icons.print_outlined,
-                      title: 'Impressora',
-                      subtitle: 'Modelo, largura de papel e margens',
-                    ),
-                    Divider(height: 1),
-                    _DisabledTile(
-                      icon: Icons.payments_outlined,
-                      title: 'Pagamentos',
-                      subtitle: 'Preferências de formas de pagamento',
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        );
-      },
+          const SizedBox(height: 16),
+          _SectionTitle('PDV (em breve)'),
+          _GroupCard(
+            child: Column(
+              children: const [
+                _DisabledTile(
+                  icon: Icons.print_outlined,
+                  title: 'Impressora',
+                  subtitle: 'Modelo, largura de papel e margens',
+                ),
+                Divider(height: 1),
+                _DisabledTile(
+                  icon: Icons.payments_outlined,
+                  title: 'Pagamentos',
+                  subtitle: 'Preferências de formas de pagamento',
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
