@@ -1,6 +1,5 @@
-
 <p align="center">
-  <b>Sistema de Gestão Integrada para Pequenos Negócios do Setor Alimentício</b><br>
+  <b>PedeAí Gestão - Sistema de Gestão para Pequenos Negócios</b><br>
   <i>Projeto desenvolvido para a disciplina de Desenvolvimento de Aplicações Móveis ministrado pela Professora Dra. Thais Burity - https://github.com/taburity - UFAPE 2025.1</i>
 </p>
 
@@ -18,33 +17,45 @@
 
 ## 📱 Sobre o Aplicativo
 
-> **PedeAí Gestão** é uma solução ERP *mobile* desenvolvida para pequenos e médios negócios alimentícios (restaurantes, lanchonetes, cafeterias etc.), reunindo em um só lugar:
+> **PedeAí Gestão** é uma solução de gestão e ponto de vendas (PDV) desenvolvida em Flutter, focada em simplificar a operação de pequenos negócios do setor alimentício.
 
-- 📋 **Pedidos e delivery**
-- 📦 **Gestão de estoque**
-- 💰 **Financeiro e relatórios**
-- 🍔 **Cardápio digital**
-- 💳 **Pagamentos** (Pix, cartão, dinheiro)
-- 📇 **Atendimento e reservas**
-- 🔗 **Integração com plataformas de entrega**
+O sistema centraliza as operações essenciais do dia a dia, permitindo que o gestor tenha controle sobre as vendas, o estoque e os cadastros fundamentais para o funcionamento do seu negócio.
 
-**Objetivo:**  
-> Automatizar e simplificar processos administrativos, aumentando eficiência e lucro do gestor.
+**Objetivo:**
+> Oferecer uma ferramenta prática para automatizar o registro de vendas, gerenciar o caixa, controlar o estoque e organizar informações de produtos, clientes e fornecedores.
 
-**Perfil de usuário:**  
-> Gerentes, operadores de caixa e funcionários do setor alimentício.
+**Perfil de usuário:**
+> Gerentes, operadores de caixa e funcionários de pequenos estabelecimentos comerciais.
 
 ---
 
-## 🛠️ Funcionalidades Principais
+## 🛠️ Funcionalidades Implementadas
 
-- **Controle de Pedidos:** Vendas em balcão e delivery, gerenciamento rápido de pedidos.
-- **Atualização de Cardápio:** Cadastro e edição de produtos, preços e categorias.
-- **Estoque Automatizado:** Entrada, saída, inventário, alertas de baixo estoque.
-- **Gestão Financeira:** Caixa, contas a pagar/receber, relatórios automáticos.
-- **Relatórios Gerenciais:** Vendas, fluxo de caixa, estoque, desempenho do negócio.
-- **Integração com Delivery:** Sincronização com apps (iFood, Uber Eats etc.)
-- **Reservas & Promoções:** Cadastro de clientes, promoções, histórico de consumo.
+-   **Ponto de Venda (PDV):**
+    -   Interface de vendas para registro rápido de produtos no carrinho.
+    -   Seleção de cliente para a venda.
+    -   Finalização de pagamento com múltiplas formas (Dinheiro, Pix, Cartão).
+    -   Cálculo de troco.
+
+-   **Gestão de Cadastros:**
+    -   **Produtos:** Cadastro completo de itens, incluindo nome, preço, categoria e unidade de medida.
+    -   **Clientes:** Registro de informações básicas dos clientes.
+    -   **Fornecedores:** Cadastro de fornecedores para controle de compras e estoque.
+    -   **Categorias e Unidades:** Organização dos produtos em categorias e unidades de medida personalizadas.
+    -   **Formas de Pagamento:** Gerenciamento dos métodos de pagamento aceitos.
+
+-   **Controle de Estoque:**
+    -   Visualização da quantidade atual de produtos em estoque.
+    -   Registro de movimentações de entrada e saída manual.
+
+-   **Gestão de Caixa:**
+    -   Fluxo de abertura e fechamento de caixa.
+    -   Registro de valor inicial (suprimento) e retiradas (sangria).
+    -   Relatório de resumo do caixa com detalhamento por forma de pagamento.
+
+-   **Histórico e Relatórios:**
+    -   Listagem e visualização detalhada de vendas realizadas.
+    -   Relatório simples de estoque atual.
 
 ---
 
@@ -53,49 +64,22 @@
 > [🔗 Visualizar Protótipo no Figma](https://www.figma.com/proto/wL3AvazQxUGj2QCTrtWvRa/PedeA%C3%AD-Gest%C3%A3o?node-id=104599-4662&p=f&t=qBQTFmlUa3TSjEEZ-0&scaling=scale-down&content-scaling=fixed&page-id=104599%3A3038)
 
 
-*Prototipo de estudo e referências*  
+*Prototipo de estudo e referências*
 > [NEXTPOS-APP-UIUX-CASE-STUDY](https://www.behance.net/gallery/224241701/NEXTPOS-APP-UIUX-CASE-STUDY?tracking_source=search_projects|erp+app+design)
 
 ---
 
 ## 📝 Backlog & Organização
 
-- Backlog detalhado no [Google Docs](https://docs.google.com/document/d/1Zw1q2-hSiHgR6gL3lAkvFnQQf5xueKES/edit?usp=sharing&ouid=113332345002356486614&rtpof=true&sd=true)
-- Gerenciamento no [GitHub Projects](https://github.com/users/AdnRamos/projects/1)
+-   Backlog detalhado no [Google Docs](https://docs.google.com/document/d/1Zw1q2-hSiHgR6gL3lAkvFnQQf5xueKES/edit?usp=sharing&ouid=113332345002356486614&rtpof=true&sd=true)
+-   Gerenciamento no [GitHub Projects](https://github.com/users/AdnRamos/projects/1)
 
 As estórias/tarefas estão divididas entre os integrantes e podem ser acompanhadas pelo quadro do projeto.
 
 ---
 
-## 📅 Planejamento de Desenvolvimento
-
-| Integrante         | Responsabilidade Principal                 |
-|--------------------|-------------------------------------------|
-| Adenilson Ramos    | Cadastro de produtos, controle de estoque |
-| Magno Sillas       | Fluxo de vendas, integração de pagamentos |
-| Anderson Seabra    | Relatórios e testes com usuários          |
-
-> _Distribuição inicial. Sujeita a ajustes conforme evolução do projeto._
-
----
-
-## 📑 Requisitos Funcionais
-
-- Gestão de pedidos (balcão/delivery)
-- Controle de estoque (alertas, pedidos automáticos)
-- Atualização de cardápio
-- Financeiro (caixa, recebimentos, pagamentos, relatórios)
-- Integração de pagamentos (Pix, cartão, dinheiro)
-- Relatórios gerenciais e dashboards
-- Atendimento ao cliente (histórico, promoções)
-- Gerenciamento de reservas
-- Integração com delivery
-
----
-
 ## 📞 Contato
 
-Dúvidas, sugestões ou feedback?  
-Abra uma [issue no repositório](https://github.com/AdnRamos/PedeAi-ERP/issues)  
+Dúvidas, sugestões ou feedback?
+Abra uma [issue no repositório](https://github.com/AdnRamos/PedeAi-ERP/issues)
 ou envie um e-mail para algum dos integrantes.
-
